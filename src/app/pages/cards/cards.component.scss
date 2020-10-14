@@ -1,0 +1,20 @@
+@import "~bootstrap/scss/functions";
+@import "~bootstrap/scss/variables";
+@import "~bootstrap/scss/mixins";
+
+.pokemons {
+  &.container {
+    margin-top: 2em;
+    margin-bottom: 2em;
+  }
+}
+
+@include media-breakpoint-down(sm) {
+  .pokemons {
+    &.container {
+      .row {
+        justify-content: center !important;
+      }
+    }
+  }
+}

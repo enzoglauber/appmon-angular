@@ -1,8 +1,19 @@
-<div class="card" style="width: 18rem;">
-  <img [src]="card.imageUrlHiRes" class="card-img-top" alt="...">
-  <div class="card-body">
-    <p class="card-text">
-      {{card.name}}
+<div class="card card-pokemon" [routerLink]="['/pokemon', card.id]">
+  <div class="card-header">
+    <p class="card-text text-primary">
+      #{{card.id}}
     </p>
+  </div>
+  <img class="card-img-top p-2" [src]="card.imageUrl" [alt]=card.name>
+  <div class="card-footer d-flex justify-content-between align-content-center">
+    <div class="card-text text-primary">
+      {{card.name}}
+    </div>
+
+    <small class="text-muted">
+      <div *ngFor="let type of card.types; let i = index">
+        {{type}} <span *ngIf="i > 0"> | </span>
+      </div>
+    </small>
   </div>
 </div>

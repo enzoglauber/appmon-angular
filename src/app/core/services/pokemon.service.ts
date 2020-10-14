@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { pluck } from 'rxjs/operators';
-import { Cards } from '../models';
+import { Card, Cards } from '../models';
 import { ApiService } from './api.service';
 
 
@@ -12,11 +12,15 @@ export class PokemonService {
   constructor(
     private apiService: ApiService
   ){}
-  
-  getCards(): void {
-    this.apiService.get('/cards?supertype=Pokémon')
-      .pipe(pluck('cards'))
-      .subscribe((cards: Array<Cards>) => this.setCards(cards) )
+
+  getCards(): Observable<Array<Card>> {
+    let cards$ = this.apiService.get('/cards?supertype=Pokémon').pipe(pluck('cards'))
+    cards$.subscribe((cards: Array<Cards>) => this.setCards(cards))
+    return cards$
+  }
+
+  getCard(id: string): Observable<Array<Card>> {
+    return this.apiService.get(`/cards/${id}`).pipe(pluck('card'))
   }
 
   setCards(values: Array<Cards>): void {

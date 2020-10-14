@@ -1,0 +1,15 @@
+@import "~bootstrap/scss/functions";
+@import "~bootstrap/scss/variables";
+@import "~bootstrap/scss/mixins";
+
+.card-pokemon {
+  margin: 1em 0;
+  cursor: pointer;
+  outline: none;
+}
+
+@include media-breakpoint-down(sm) {
+  .card-pokemon {
+    margin: 1em 0.5em;
+  }
+}

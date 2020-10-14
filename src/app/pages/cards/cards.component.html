@@ -1,4 +1,5 @@
-
-<div class="container" *ngIf="cards$ | async as cards">
-  <app-card *ngFor="let card of cards" [card]="card"></app-card>
+<div class="container pokemons">
+  <div class="row justify-content-between">
+    <app-card *ngFor="let card of cards" [card]="card"></app-card>
+  </div>
 </div>

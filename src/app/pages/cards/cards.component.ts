@@ -1,22 +1,22 @@
 import { Component, OnInit } from '@angular/core';
-import { Observable } from 'rxjs';
-import { Cards, PokemonService } from 'src/app/core';
+import { ActivatedRoute } from '@angular/router';
+import { Card } from 'src/app/core';
 
 @Component({
   selector: 'app-cards',
   templateUrl: './cards.component.html',
-  styleUrls: ['./cards.component.sass']
+  styleUrls: ['./cards.component.scss']
 })
 export class CardsComponent implements OnInit {
-  cards$: Observable<Array<Cards>>;
+  cards: Array<Card>;
 
   constructor(
-    private pokemonService: PokemonService
-  ){
-    this.pokemonService.getCards()
-  }
-
+    private route: ActivatedRoute,
+  ) { }
+  
   ngOnInit() {
-    this.cards$ = this.pokemonService.cards$
+    this.route.data.subscribe((data: { cards: Array<Card> }) => {
+      this.cards = data.cards
+    });
   }
 }

@@ -8,11 +8,12 @@ export interface Card {
   imageUrl: string;
   imageUrlHiRes: string;
   types: Array<string>;
+  evolvesFrom: string;
   supertype: string;
   subtype: string;
   hp: string;
-  retreatCost: Array<string>;
-  convertedRetreatCost: number;
+  retreatCost?: Array<string>;
+  convertedRetreatCost?: number;
   number: string;
   artist: string;
   rarity: string;
@@ -20,6 +21,6 @@ export interface Card {
   set: string;
   setCode: string;
   text: Array<string>;
-  attacks: Array<Attack>;
-  weaknesses: Array<Weakness>;
+  attacks?: Array<Attack>;
+  weaknesses?: Array<Weakness>;
 }
