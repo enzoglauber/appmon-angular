@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
-import { pluck } from 'rxjs/operators';
+import { map, pluck } from 'rxjs/operators';
 import { Card, Cards } from '../models';
 import { ApiService } from './api.service';
 
@@ -12,9 +12,20 @@ export class PokemonService {
   constructor(
     private apiService: ApiService
   ){}
+  
+  sortByName(a, b) {
+    if (a.name < b.name)
+      return -1;
+    if (a.name > b.name)
+      return 1;
+    return 0;
+  }
 
   getCards(): Observable<Array<Card>> {
-    let cards$ = this.apiService.get('/cards?supertype=Pokémon').pipe(pluck('cards'))
+    let cards$ = this.apiService.get('/cards?supertype=Pokémon&sort=name').pipe(
+                    pluck('cards'),
+                    map(items => items.sort(this.sortByName))
+                  )
     cards$.subscribe((cards: Array<Cards>) => this.setCards(cards))
     return cards$
   }

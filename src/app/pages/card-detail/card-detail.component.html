@@ -1,3 +1,46 @@
-<p>
-  {{card | json}}
-</p>
+<div class="container detail">
+  <div class="row">
+    <div class="col-12 col-md-6">
+      <div class="card card-pokemon">
+        <img class="card-img-top p-2" [src]="card.imageUrlHiRes" [alt]=card.name>       
+      </div>
+    </div>
+
+    <div class="col-12 col-md-6">
+      <div class="card">
+        <div class="card-header d-flex justify-content-between align-content-center">
+          <div class="card-text text-primary">
+            {{card.name}}
+          </div>
+          
+          <small class="text-muted">
+            <div *ngFor="let type of card.types; let i = index">
+              {{type}} <span *ngIf="card.types.length > i+1"> | </span>
+            </div>
+          </small>
+        </div>
+
+        <div class="card-body">
+          Attacks:
+          <app-card-detail-attacks [attacks]="card.attacks"></app-card-detail-attacks>
+        </div>
+
+        <div class="card-body">
+          Resistances:
+          <app-card-details-r-or-w [rw]="card.resistances"></app-card-details-r-or-w>
+        </div>
+
+        <div class="card-body">
+          Weaknesses:
+          <app-card-details-r-or-w [rw]="card.weaknesses"></app-card-details-r-or-w>
+        </div>
+
+        <div class="card-footer">
+          <p class="card-text text-primary">
+            #{{card.id}}
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

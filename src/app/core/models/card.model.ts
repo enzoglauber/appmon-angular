@@ -1,4 +1,5 @@
 import { Attack } from './attack.model';
+import { Resistance } from './resistance.model';
 import { Weakness } from './weakness.model';
 
 export interface Card {
@@ -23,4 +24,5 @@ export interface Card {
   text: Array<string>;
   attacks?: Array<Attack>;
   weaknesses?: Array<Weakness>;
+  resistances?: Array<Resistance>;
 }

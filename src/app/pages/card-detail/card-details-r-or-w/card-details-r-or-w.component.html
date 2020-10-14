@@ -1,0 +1,6 @@
+<div class="border border-default p-2">
+  <div *ngFor="let item of rw; let i = index">      
+    {{item.type}} | {{item.value}}    
+    <br *ngIf="rw.length > i+1">
+  </div>
+</div>

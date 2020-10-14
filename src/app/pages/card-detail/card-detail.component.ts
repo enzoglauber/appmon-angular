@@ -17,6 +17,7 @@ export class CardDetailComponent implements OnInit {
   ngOnInit() {
     this.route.data.subscribe((data: { card: Card }) => {
       this.card = data.card
+      console.log('card', this.card)
     });
   }
 }

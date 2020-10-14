@@ -1,0 +1,25 @@
+<div class="border border-danger p-2">
+  <div *ngFor="let attack of attacks; let i = index">
+    <div>
+      <div *ngIf="attack.name">
+        <b>name: </b> {{attack.name}}
+      </div>
+
+      <div *ngIf="attack.cost.length">
+        <b>cost: </b>
+        <span *ngFor="let cost of attack.cost; let i = index">
+          {{cost}} <span *ngIf="attack.cost.length > i+1"> | </span>
+        </span>
+      </div>
+
+      <div *ngIf="attack.damage">
+        <b>damage: </b> {{attack.damage}}
+      </div>
+
+      <div *ngIf="attack.text">
+        <b>descrition: </b> {{attack.text}}
+      </div>
+    </div>
+    <hr *ngIf="attacks.length > i+1">
+  </div>
+</div>
