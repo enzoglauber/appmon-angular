@@ -1,2 +1,2 @@
-export * from './app.service';
+export * from './pokemon.service';
 export * from './api.service';

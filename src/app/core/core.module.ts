@@ -3,6 +3,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
+import { LazyImgDirective } from './directives';
 import { FooterComponent, HeaderComponent } from './layout';
 
 import { ApiService, PokemonService } from './services';
@@ -23,6 +24,8 @@ import { ApiService, PokemonService } from './services';
   declarations: [
     FooterComponent,
     HeaderComponent,
+
+    LazyImgDirective,
   ],
   exports: [
     CommonModule,
@@ -30,9 +33,10 @@ import { ApiService, PokemonService } from './services';
     ReactiveFormsModule,
     HttpClientModule,
     RouterModule,
-
+    
     FooterComponent,
     HeaderComponent,
+    LazyImgDirective,
   ]
 })
 

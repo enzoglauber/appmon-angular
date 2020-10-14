@@ -1,3 +1,5 @@
+import { Card } from './card.model';
+
 export interface Cards {
-  name: string;
+  cards: Array<Card>;
 }
