@@ -1,0 +1,30 @@
+@import 'assets/sass/font-face.scss';
+@import 'assets/sass/bootstrap-helpers.scss';
+
+* {
+  font-family: "effra", sans-serif;
+}
+
+body {
+  margin: 0;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+:host {
+  display: flex;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.text-overline {
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 18px;
+  text-transform: uppercase;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
+}
