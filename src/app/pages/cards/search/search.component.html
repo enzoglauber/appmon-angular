@@ -1,0 +1,14 @@
+<nav class="navbar navbar-light bg-light d-flex justify-content-center">
+  <form class="form-inline">
+    <input 
+      class="form-control mr-sm-2"
+      type="search"
+      placeholder="Gotta Catch 'Em All"
+      aria-label="Search"
+      [(ngModel)]="search"
+      [ngModelOptions]="{standalone: true}"
+      (keyup)="search$.next($event.target.value)"
+    >
+    <button class="btn btn-outline-success my-2 my-sm-0" (click)="onClickSearch()">Search</button>
+  </form>
+</nav>

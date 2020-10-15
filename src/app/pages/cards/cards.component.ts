@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { Card } from 'src/app/core';
+import { Observable } from 'rxjs';
+import { Card, Cards, PokemonService } from 'src/app/core';
 
 @Component({
   selector: 'app-cards',
@@ -8,15 +9,14 @@ import { Card } from 'src/app/core';
   styleUrls: ['./cards.component.scss']
 })
 export class CardsComponent implements OnInit {
-  cards: Array<Card>;
+  cards$: Observable<Array<Cards>>;
 
   constructor(
-    private route: ActivatedRoute,
-  ) { }
-  
+    private pokemonService: PokemonService
+  ) {
+  }
+
   ngOnInit() {
-    this.route.data.subscribe((data: { cards: Array<Card> }) => {
-      this.cards = data.cards
-    });
+    this.cards$ = this.pokemonService.cards$
   }
 }

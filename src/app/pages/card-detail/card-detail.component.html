@@ -20,17 +20,17 @@
           </small>
         </div>
 
-        <div class="card-body">
+        <div class="card-body" *ngIf="!!card.attacks?.length">
           Attacks:
           <app-card-detail-attacks [attacks]="card.attacks"></app-card-detail-attacks>
         </div>
 
-        <div class="card-body">
+        <div class="card-body" *ngIf="!!card.resistances?.length">
           Resistances:
           <app-card-details-r-or-w [rw]="card.resistances"></app-card-details-r-or-w>
         </div>
 
-        <div class="card-body">
+        <div class="card-body" *ngIf="!!card.weaknesses?.length">
           Weaknesses:
           <app-card-details-r-or-w [rw]="card.weaknesses"></app-card-details-r-or-w>
         </div>

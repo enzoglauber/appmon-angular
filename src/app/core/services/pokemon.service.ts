@@ -1,14 +1,14 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, Observable } from 'rxjs';
-import { map, pluck } from 'rxjs/operators';
+import { BehaviorSubject, Observable, Subject } from 'rxjs';
+import { debounceTime, distinctUntilChanged, map, pluck, switchMap } from 'rxjs/operators';
 import { Card, Cards } from '../models';
 import { ApiService } from './api.service';
-
 
 @Injectable()
 export class PokemonService {
   private cards: BehaviorSubject<Array<Cards>> = new BehaviorSubject( [] );
   public cards$: Observable<Array<Cards>> = this.cards.asObservable();
+
   constructor(
     private apiService: ApiService
   ){}
@@ -21,8 +21,9 @@ export class PokemonService {
     return 0;
   }
 
-  getCards(): Observable<Array<Card>> {
-    let cards$ = this.apiService.get('/cards?supertype=Pokémon&sort=name').pipe(
+  getCards(name?: string): Observable<Array<Card>> {
+    const search = (name) ? `&name=${name}` : ''
+    let cards$ = this.apiService.get(`/cards?supertype=Pokémon${search}`).pipe(
                     pluck('cards'),
                     map(items => items.sort(this.sortByName))
                   )
@@ -40,5 +41,17 @@ export class PokemonService {
 
   private nextCards(values: Array<Cards>): void {
     this.cards.next(values)  
+  }
+
+  search(terms: Subject<string>): Observable<any> {
+    return terms.pipe(
+      debounceTime(1000),
+      distinctUntilChanged(),
+      switchMap(name => this.searchBy(name))
+    )
+  }
+
+  searchBy(name: string): Observable<Array<Card>> {
+    return this.getCards(name)
   }
 }
